@@ -14,6 +14,6 @@ public class UsersDto {
     private String userId;
     private String userName;
     private String userType;
-    private List<StripeDto> stripeDetails;
+//    private List<StripeDto> stripeDetails;
 
 }
