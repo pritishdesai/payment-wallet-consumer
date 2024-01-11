@@ -18,6 +18,7 @@ public class UserWalletEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userWalletId;
     private Long userId;
+    private String userType;
     private BigDecimal balance;
     @UpdateTimestamp
     private LocalDateTime actionDate;
