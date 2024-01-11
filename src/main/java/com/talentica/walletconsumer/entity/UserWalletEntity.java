@@ -2,6 +2,8 @@ package com.talentica.walletconsumer.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.math.BigDecimal;
@@ -17,8 +19,8 @@ public class UserWalletEntity {
     private Long userWalletId;
     private Long userId;
     private BigDecimal balance;
+    @UpdateTimestamp
     private LocalDateTime actionDate;
-    @CreatedDate
-    @Column(updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdDate;
 }

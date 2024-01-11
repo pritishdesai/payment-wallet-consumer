@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository("UserWalletRepo")
 public interface UserWalletRepository extends JpaRepository<UserWalletEntity, Long> {
 
-    public UserEntity findByUserId(String userId);
+    public UserWalletEntity findByUserId(Long userId);
 }

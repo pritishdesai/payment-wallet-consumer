@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -18,8 +20,8 @@ public class UserEntity {
     private Long userId;
     private String userName;
     private String userType;
+    @UpdateTimestamp
     private LocalDateTime actionDate;
-    @CreatedDate
-    @Column(updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdDate;
 }

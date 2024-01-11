@@ -1,6 +1,8 @@
 package com.talentica.walletconsumer.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.math.BigDecimal;
@@ -18,8 +20,8 @@ public class UserWalletTransactionHistoryEntity {
     private String transactionType; // Credit Or Debit
     private BigDecimal amount; //Amount that is credited or debited.
 
+    @UpdateTimestamp
     private LocalDateTime actionDate;
-    @CreatedDate
-    @Column(updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdDate;
 }
