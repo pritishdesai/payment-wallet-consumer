@@ -41,14 +41,11 @@ public class TransferFundsConsumer {
             ObjectMapper objectMapper = new ObjectMapper();
 //                    .readerFor(TransferRequestDto.class)
 //                    .readValue(jsonObject.getJSONObject("payload").getString("amount"));
-            TransferRequestDto transferRequestDto = objectMapper.readValue(jsonObject.getString("payload"), TransferRequestDto.class);
+            TransferRequestDto transferRequestDto = objectMapper
+                    .readValue(jsonObject.getString("payload"), TransferRequestDto.class);
             transferFundsService.transferFunds(transferRequestDto);
-        }catch (JsonProcessingException e){
+        }catch (JsonProcessingException | JSONException e){
             log.error(String.format("Unable to deserialize message ==> %s",consumerRecord.value()));
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 }

@@ -23,5 +23,6 @@ public class UserEntity {
     @UpdateTimestamp
     private LocalDateTime actionDate;
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdDate;
 }
