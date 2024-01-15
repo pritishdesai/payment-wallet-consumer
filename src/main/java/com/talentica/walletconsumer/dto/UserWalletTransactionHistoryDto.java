@@ -9,12 +9,11 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserTransactionHistoryDto {
+public class UserWalletTransactionHistoryDto {
 
-    private String Id;
     private String userId;
     private String userType;
-    private String txnType;
+    private String transactionType;
     private String amount;
     private LocalDateTime actionDate;
 }

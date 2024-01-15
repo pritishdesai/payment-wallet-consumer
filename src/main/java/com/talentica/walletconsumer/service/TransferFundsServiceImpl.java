@@ -2,7 +2,7 @@ package com.talentica.walletconsumer.service;
 
 import com.talentica.walletconsumer.constants.AppConstants;
 import com.talentica.walletconsumer.dto.TransferRequestDto;
-import com.talentica.walletconsumer.dto.UserTransactionHistoryDto;
+import com.talentica.walletconsumer.dto.UserWalletTransactionHistoryDto;
 import com.talentica.walletconsumer.dto.UserWalletDto;
 import com.talentica.walletconsumer.mapper.UserWalletMapper;
 import com.talentica.walletconsumer.mapper.UserWalletTransactionHistoryMapper;
@@ -66,28 +66,28 @@ public class TransferFundsServiceImpl implements TransferFundsService{
         log.info(String.format("TransferFundsServiceImpl::transferFunds saved receiver wallet %s",receiverWalletDto.toString()));
 
         //4. Log Transactions
-        UserTransactionHistoryDto senderTransaction =
-                new UserTransactionHistoryDto();
+        UserWalletTransactionHistoryDto senderTransaction =
+                new UserWalletTransactionHistoryDto();
         senderTransaction.setUserId(senderWalletDto.getUserId());
-        senderTransaction.setTxnType(AppConstants.WALLET_TRANSACTION_TYPE_DEBIT);
+        senderTransaction.setTransactionType(AppConstants.WALLET_TRANSACTION_TYPE_DEBIT);
         senderTransaction.setUserType(senderWalletDto.getUserType());
         senderTransaction.setAmount(transferRequestDto.getAmount());
         senderTransaction.setActionDate(LocalDateTime.now());
 
         userWalletTxnHstRepository.save(UserWalletTransactionHistoryMapper.USER_WALLET_TRANSACTION_HISTORY_MAPPER
-                .convertDtoToEntity(senderTransaction));
+                .convertUserTransactionHistoryDtoToUserWalletTransactionHistoryEntity(senderTransaction));
         log.info(String.format("TransferFundsServiceImpl::transferFunds Sender Transaction Logged : %s",senderTransaction.toString()));
 
-        UserTransactionHistoryDto receiverTransaction =
-                new UserTransactionHistoryDto();
+        UserWalletTransactionHistoryDto receiverTransaction =
+                new UserWalletTransactionHistoryDto();
         receiverTransaction.setUserId(receiverWalletDto.getUserId());
-        receiverTransaction.setTxnType(AppConstants.WALLET_TRANSACTION_TYPE_CREDIT);
+        receiverTransaction.setTransactionType(AppConstants.WALLET_TRANSACTION_TYPE_CREDIT);
         receiverTransaction.setUserType(receiverWalletDto.getUserType());
         receiverTransaction.setAmount(transferRequestDto.getAmount());
         receiverTransaction.setActionDate(LocalDateTime.now());
 
         userWalletTxnHstRepository.save(UserWalletTransactionHistoryMapper.USER_WALLET_TRANSACTION_HISTORY_MAPPER
-                .convertDtoToEntity(receiverTransaction));
+                .convertUserTransactionHistoryDtoToUserWalletTransactionHistoryEntity(receiverTransaction));
         log.info(String.format("TransferFundsServiceImpl::transferFunds Receiver Transaction Logged : %s",receiverTransaction.toString()));
     }
 }
