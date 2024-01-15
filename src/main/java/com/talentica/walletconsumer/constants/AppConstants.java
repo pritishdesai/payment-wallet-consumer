@@ -6,4 +6,8 @@ public interface AppConstants {
     String TOPIC_SPLIT_FUNDS = "payment-wallet-split-funds";
     String TOPIC_TRANSFER_FUNDS = "payment-wallet-transfer-funds";
 
+    String WALLET_TRANSACTION_TYPE_CREDIT = "Credit";
+    String WALLET_TRANSACTION_TYPE_DEBIT = "Debit";
+
+
 }

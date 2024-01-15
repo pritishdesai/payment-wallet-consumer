@@ -4,16 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class UsersDto {
+@NoArgsConstructor
+public class UserWalletTransactionHistoryDto {
 
     private String userId;
-    private String userName;
     private String userType;
-//    private List<StripeDto> stripeDetails;
-
+    private String transactionType;
+    private String amount;
+    private LocalDateTime actionDate;
 }
