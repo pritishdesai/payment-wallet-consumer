@@ -1,6 +1,7 @@
 package com.talentica.walletconsumer.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,17 +9,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class StripeDto {
+@NoArgsConstructor
+@Builder
+public class StripeChargeDto {
 
-    private String userName;
-    private String cardNumber;
-    private String expMonth;
-    private String expYear;
-    private String cvv;
     private String stripeToken;
-    private Double amount;
+    private String userName;
+    private String amount;
     private Boolean success;
     private String message;
     private String chargeId;

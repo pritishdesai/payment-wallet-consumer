@@ -6,15 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class UserWalletDto {
+@NoArgsConstructor
+public class AddWithdrawFundsDto {
 
-    private String userWalletId;
     private String userId;
-    private String userType;
-    private String balance;
-
-
+    private String amount;
+    private StripeDto stripeDetails;
+    private String requestType; //Add Or Withdraw (A/W)
 }

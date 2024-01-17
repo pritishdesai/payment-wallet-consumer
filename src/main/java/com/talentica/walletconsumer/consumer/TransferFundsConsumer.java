@@ -39,10 +39,9 @@ public class TransferFundsConsumer {
                     consumerRecord.value()));
             JSONObject jsonObject = new JSONObject(consumerRecord.value());
             ObjectMapper objectMapper = new ObjectMapper();
-//                    .readerFor(TransferRequestDto.class)
-//                    .readValue(jsonObject.getJSONObject("payload").getString("amount"));
             TransferRequestDto transferRequestDto = objectMapper
-                    .readValue(jsonObject.getString("payload"), TransferRequestDto.class);
+                    .readValue(jsonObject.getString("payload"),
+                            TransferRequestDto.class);
             transferFundsService.transferFunds(transferRequestDto);
         }catch (JsonProcessingException | JSONException e){
             log.error(String.format("Unable to deserialize message ==> %s",consumerRecord.value()));
