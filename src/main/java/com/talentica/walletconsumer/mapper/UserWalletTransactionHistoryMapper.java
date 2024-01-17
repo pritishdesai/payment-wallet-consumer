@@ -11,6 +11,6 @@ public interface UserWalletTransactionHistoryMapper {
     UserWalletTransactionHistoryMapper USER_WALLET_TRANSACTION_HISTORY_MAPPER
             = Mappers.getMapper(UserWalletTransactionHistoryMapper.class);
 
-    UserWalletTransactionHistoryEntity convertUserTransactionHistoryDtoToUserWalletTransactionHistoryEntity
-            (UserWalletTransactionHistoryDto userTransactionHistoryDto);
+    UserWalletTransactionHistoryEntity convertUserWalletTransactionHistoryDtoToUserWalletTransactionHistoryEntity
+            (UserWalletTransactionHistoryDto userWalletTransactionHistoryDto);
 }

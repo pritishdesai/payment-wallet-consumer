@@ -14,4 +14,5 @@ public class TransferRequestDto {
         private String amount;
         private UsersDto sender;
         private UsersDto receiver;
+        private String transactionId;
 }
