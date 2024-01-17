@@ -3,6 +3,8 @@ package com.talentica.walletconsumer.service;
 import com.talentica.walletconsumer.constants.AppConstants;
 import com.talentica.walletconsumer.dto.*;
 import com.talentica.walletconsumer.entity.UserEntity;
+import com.talentica.walletconsumer.entity.UserWalletEntity;
+import com.talentica.walletconsumer.entity.UserWalletTransactionHistoryEntity;
 import com.talentica.walletconsumer.mapper.UserMapper;
 import com.talentica.walletconsumer.mapper.UserWalletMapper;
 import com.talentica.walletconsumer.mapper.UserWalletTransactionHistoryMapper;
@@ -69,18 +71,25 @@ public class AddFundsServiceImpl implements AddFundsService{
             UserWalletTransactionHistoryDto userWalletTransactionHistoryDto =
                     UserWalletTransactionHistoryDto
                             .builder()
-                            .userId(Long.parseLong(addWithdrawFundsDto.getUserId()))
+                            .userId(addWithdrawFundsDto.getUserId())
                             .amount(addWithdrawFundsDto.getAmount())
                             .userType(usersDto.getUserType())
                             .transactionType(AppConstants.WALLET_TRANSACTION_TYPE_CREDIT)
                             .actionDate(LocalDateTime.now())
                             .build();
+            UserWalletTransactionHistoryEntity userWalletTransactionHistoryEntity=
+                    UserWalletTransactionHistoryEntity
+                            .builder()
+                            .userId(Long.parseLong(userWalletTransactionHistoryDto.getUserId()))
+                            .amount(new BigDecimal(userWalletTransactionHistoryDto.getAmount()))
+                            .userType(userWalletTransactionHistoryDto.getUserType())
+                            .transactionId(addWithdrawFundsDto.getTransactionId())
+                            .transactionType(AppConstants.WALLET_TRANSACTION_TYPE_CREDIT)
+                            .build();
 
-            userWalletTransactionHistoryRepository.save(
-                    UserWalletTransactionHistoryMapper.USER_WALLET_TRANSACTION_HISTORY_MAPPER
-                            .convertUserWalletTransactionHistoryDtoToUserWalletTransactionHistoryEntity(userWalletTransactionHistoryDto));
+            userWalletTransactionHistoryRepository.save(userWalletTransactionHistoryEntity);
             log.info(String.format("AddFundsServiceImpl::addFunds -> Logged Transaction %s",
-                    userWalletTransactionHistoryDto.toString()));
+                    userWalletTransactionHistoryEntity.toString()));
 
 
 

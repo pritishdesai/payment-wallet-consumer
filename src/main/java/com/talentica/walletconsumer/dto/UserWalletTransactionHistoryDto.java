@@ -13,9 +13,10 @@ import java.time.LocalDateTime;
 @Builder
 public class UserWalletTransactionHistoryDto {
 
-    private Long id;
-    private Long userId;
+    private String id;
+    private String userId;
     private String userType;
+    private String transactionId;
     private String transactionType;
     private String amount;
     private LocalDateTime actionDate;

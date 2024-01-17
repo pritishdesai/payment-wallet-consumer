@@ -1,18 +1,17 @@
 package com.talentica.walletconsumer.service;
 
 import com.stripe.Stripe;
-import com.stripe.StripeClient;
-import com.stripe.exception.StripeException;
-import com.stripe.model.Charge;
+//import com.stripe.exception.StripeException;
+//import com.stripe.model.Charge;
 import com.talentica.walletconsumer.dto.StripeChargeDto;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.Map;
 
 @Service
 @Slf4j
@@ -28,7 +27,7 @@ public class StripeServiceImpl implements StripeService{
 
     public StripeChargeDto charge(StripeChargeDto chargeRequest){
         try {
-            Map<String, Object> metaData = new HashMap<>();
+            /*Map<String, Object> metaData = new HashMap<>();
             metaData.put("id", chargeRequest.getChargeId());
             metaData.putAll(chargeRequest.getAdditionalInfo());
 
@@ -53,12 +52,16 @@ public class StripeServiceImpl implements StripeService{
                 log.info(String.format("StripeServiceImpl::charge -> Charge successful -> %s",charge.toString()));
                 chargeRequest.setChargeId(chargeRequest.getChargeId());
                 chargeRequest.setSuccess(true);
-            }
-//            chargeRequest.setSuccess(true);
+            }*/
+            chargeRequest.setSuccess(true);
             return chargeRequest;
-        }catch (StripeException e){
+        }catch (Exception e){
             log.error("StripeServiceImpl::charge -> ",e);
             throw new RuntimeException(e.getMessage());
         }
+        /*catch (StripeException e){
+            log.error("StripeServiceImpl::charge -> ",e);
+            throw new RuntimeException(e.getMessage());
+        }*/
     }
 }
