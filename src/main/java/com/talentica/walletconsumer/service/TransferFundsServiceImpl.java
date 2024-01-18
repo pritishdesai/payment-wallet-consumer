@@ -88,7 +88,7 @@ public class TransferFundsServiceImpl implements TransferFundsService{
                         .amount(new BigDecimal(senderTransaction.getAmount()))
                         .userType(senderTransaction.getUserType())
                         .transactionId(transferRequestDto.getTransactionId())
-                        .transactionType(AppConstants.WALLET_TRANSACTION_TYPE_CREDIT)
+                        .transactionType(senderTransaction.getTransactionType())
                         .build();
 
         userWalletTxnHstRepository.save(senderWalletTransactionHistoryEntity);
@@ -111,14 +111,14 @@ public class TransferFundsServiceImpl implements TransferFundsService{
         UserWalletTransactionHistoryEntity receiverWalletTransactionHistoryEntity=
                 UserWalletTransactionHistoryEntity
                         .builder()
-                        .userId(Long.parseLong(senderTransaction.getUserId()))
-                        .amount(new BigDecimal(senderTransaction.getAmount()))
-                        .userType(senderTransaction.getUserType())
+                        .userId(Long.parseLong(receiverTransaction.getUserId()))
+                        .amount(new BigDecimal(receiverTransaction.getAmount()))
+                        .userType(receiverTransaction.getUserType())
                         .transactionId(transferRequestDto.getTransactionId())
-                        .transactionType(AppConstants.WALLET_TRANSACTION_TYPE_CREDIT)
+                        .transactionType(receiverTransaction.getTransactionType())
                         .build();
 
         userWalletTxnHstRepository.save(receiverWalletTransactionHistoryEntity);
-        log.info(String.format("TransferFundsServiceImpl::transferFunds Receiver Transaction Logged : %s",receiverTransaction));
+        log.info(String.format("TransferFundsServiceImpl::transferFunds Receiver Transaction Logged : %s",receiverWalletTransactionHistoryEntity.toString()));
     }
 }
